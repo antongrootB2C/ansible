@@ -8,3 +8,15 @@
       - ipa-server-dns
     state: present
   become: yes
+
+- name: check if ipa server is already installed
+  command: ipactl status 
+  register: result
+  ignore_errors: True 
+  no_log: True
+  become: yes
+
+- name: setup ipa-server
+  command: ipa-server-install --realm=idm.rwshub.nl --domain=idm.rwshub.nl --ds-password=clouds@RWS123 --admin-password=clouds@RWS123 --hostname=idm-p-vm01.idm.rwshub.nl --ip-address=10.123.0.37 --setup-dns --forwarder=10.123.0.41 --forwarder=10.123.0.42 --reverse-zone=0.123.10.in-addr.arpa --unattended
+  when: result is failed
+  become: yes
