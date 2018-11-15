@@ -1,0 +1,8 @@
+---
+#file roles/common/tasks/main.yml
+
+- name: yum update all
+  yum:
+    name: '*'
+    state: latest
+  become: yes

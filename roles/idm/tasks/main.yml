@@ -1,0 +1,10 @@
+---
+# file: roles/idm/tasks/main.yml
+
+- name: ensure ipa-server
+  yum:
+    name:
+      - ipa-server
+      - ipa-server-dns
+    state: present
+  become: yes

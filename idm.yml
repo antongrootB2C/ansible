@@ -1,0 +1,6 @@
+---
+
+- hosts: idm
+  roles:
+    - common
+    - idm
